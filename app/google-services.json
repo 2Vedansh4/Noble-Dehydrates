@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "243589867565",
+    "project_id": "brc-foods",
+    "storage_bucket": "brc-foods.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:243589867565:android:4851fdb1a0656c7421b0a4",
+        "android_client_info": {
+          "package_name": "com.example.brc"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAp3RN1YVeW-4cX_O-SnQr89zVOKXJCCoo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

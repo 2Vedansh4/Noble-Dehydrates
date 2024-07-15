@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="primaryColor">#1d1463</color> <!-- Material Design Blue -->
+    <color name="primaryDarkColor">#ca0e26</color> <!-- Darker shade of primaryColor -->
+    <color name="accentColor">#FF4081</color> <!-- Material Design Pink -->
+    <color name="grey">#9E9E9E</color> <!-- Material Design Grey -->
+    <color name="red">#FF0000</color> <!-- Red -->
+    <color name="green">#4CAF50</color> <!-- Green -->
+    <color name="blue">#03A9F4</color> <!-- Blue -->
+    <color name="yellow">#FFEB3B</color> <!-- Yellow -->
+    <color name="my_light_primary">#1d1463</color>
+    <color name="my_light_primary_variant">#ca0e26</color>
+    <color name="my_light_on_primary">#FFFFFFFF</color>
+    <color name="my_light_secondary">#FF4081</color>
+    <color name="my_light_secondary_variant">#F50057</color>
+    <color name="my_light_on_secondary">#FFFFFFFF</color>
+    <color name="my_light_window_background">#FFFFFFFF</color>
+</resources>
