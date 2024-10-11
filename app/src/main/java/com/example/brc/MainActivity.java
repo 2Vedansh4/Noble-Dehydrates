@@ -1,12 +1,14 @@
 package com.example.brc;
 
 import android.annotation.SuppressLint;
+import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -19,19 +21,28 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
+import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
     private ItemAdapter itemAdapter;
     private FirebaseAuth auth;
     private DatabaseReference database;
+    Calendar calendar ;
+    EditText dateInput;
+    Button selectDateButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        calendar = Calendar.getInstance();
+
 
 
         Toolbar toolbar = findViewById(R.id.tool);
@@ -40,6 +51,36 @@ public class MainActivity extends AppCompatActivity {
         database = FirebaseDatabase.getInstance().getReference();
         recyclerView = findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+        dateInput = findViewById(R.id.dateInput);
+        selectDateButton = findViewById(R.id.selectDateButton);
+        if (dateInput.getText().toString().isEmpty()) {
+            setCurrentDateToInput();
+        }
+        // Set up the date picker dialog
+        selectDateButton.setOnClickListener(v -> {
+            // Get the current date
+            Calendar calendar = Calendar.getInstance();
+            int year = calendar.get(Calendar.YEAR);
+            int month = calendar.get(Calendar.MONTH);
+            int day = calendar.get(Calendar.DAY_OF_MONTH);
+
+            // Create a DatePickerDialog
+            DatePickerDialog datePickerDialog = new DatePickerDialog(
+                    MainActivity.this,
+                    (view, selectedYear, selectedMonth, selectedDay) -> {
+                        // The month returned is 0-based, so you need to add 1
+                        String selectedDate = selectedDay + "/" + (selectedMonth + 1) + "/" + selectedYear;
+                        // Set the date in the EditText
+                        dateInput.setText(selectedDate);
+                    },
+                    year, month, day
+            );
+
+            // Show the dialog
+            datePickerDialog.show();
+        });
+
 
         itemAdapter = new ItemAdapter(new ArrayList<>(), new ItemAdapter.OnItemClickListener() {
             @Override
@@ -57,7 +98,16 @@ public class MainActivity extends AppCompatActivity {
         recyclerView.setAdapter(itemAdapter);
 
         checkAuthorizationAndLoadData();
+
+
     }
+    private void setCurrentDateToInput() {
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
+        String currentDate = sdf.format(calendar.getTime());
+        dateInput.setText(currentDate);
+    }
+
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_main, menu);

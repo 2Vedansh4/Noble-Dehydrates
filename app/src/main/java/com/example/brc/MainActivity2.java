@@ -1,5 +1,6 @@
 package com.example.brc;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.activity.EdgeToEdge;
@@ -12,6 +13,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.Spinner;
 
 import androidx.annotation.NonNull;
@@ -34,6 +36,7 @@ import java.util.Map;
 public class MainActivity2 extends AppCompatActivity {
     private DatabaseReference dbRef;
     private Spinner dateSpinner;
+    private Button toAddTask ;
     private RecyclerView dataRecyclerView;
     private DataAdapter dataAdapter;
     private List<String> dateList;
@@ -55,12 +58,19 @@ public class MainActivity2 extends AppCompatActivity {
         dataRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         dataAdapter = new DataAdapter();
         dataRecyclerView.setAdapter(dataAdapter);
-
+        toAddTask = findViewById(R.id.addtask) ;
         dateList = new ArrayList<>();
         dataMap = new HashMap<>();
-
+        toAddTask.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity2.this, MainActivity3.class) ;
+                startActivity(intent);
+            }
+        });
         // Load data from Firebase
         loadDataFromFirebase();
+
     }
 
     private void loadDataFromFirebase() {

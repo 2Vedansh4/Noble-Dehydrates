@@ -11,12 +11,19 @@
         android:layout_width="match_parent"
         android:layout_height="50dp"
         />
+    <Button
+        android:id="@+id/addtask"
+        android:layout_width="match_parent"
+        android:layout_height="50dp">
+
+    </Button>
 
 
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/dataRecyclerView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="wrap_content" />
+
 
 </LinearLayout>
